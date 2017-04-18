@@ -20,7 +20,7 @@ void RenderScene() //Zeichenfunktion
 	glLoadIdentity(); // Aktuelle Model-/View-Transformations-Matrix zuruecksetzen
 	glClearColor(0.7, 0.25, 0.1, 0.);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 
 
 	glBegin(GL_POLYGON);
@@ -82,7 +82,7 @@ void Animate(int value)
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv); // GLUT initialisieren
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB |GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(600, 600); // Fenster-Konfiguration
 	glutCreateWindow("Lukas \"THE\" Assmann; Marcel \"THE\" Feix"); // Fenster-Erzeugung
 	glutDisplayFunc(RenderScene); // Zeichenfunktion bekannt machen
