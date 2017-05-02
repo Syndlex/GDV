@@ -1,6 +1,9 @@
 // GD-Praktikum:   teil_1.cpp  (Teil 1: Start-Programm)
 // Hergenroether / Groch    Last Update: 05.07.2014
 
+
+#include "Wuerfel.h"
+
 #include <iostream>
 #include <GL/freeglut.h>         //lädt alles für OpenGL
 
@@ -21,29 +24,13 @@ void RenderScene() //Zeichenfunktion
 	glClearColor(0.7, 0.25, 0.1, 0.);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	//glTranslatef(0., 0., -1.);
 
 
-	glBegin(GL_POLYGON);
-	{
-		glColor4f(1.0, 0.0, 0.0, 1.0);
+	gluLookAt(0., 1., 1., 0., 0., 0., 0., 1., 0.);
 
-		glVertex3f(-0.5, -0.5, -0.5);
-		glColor4f(0, 0, 1., 0.);
-		glVertex3f(0.5, -0.5, -0.5);
-		glVertex3f(0.5, 0.5, -0.5);
-		glVertex3f(-0.5, 0.5, -0.5);
-	}
-	glEnd();
+	Wuerfel(0.4);
 
-	glBegin(GL_POLYGON);
-	{
-		glColor4f(0., 1., 0., 1.);
-		glVertex3f(-0.5, -0.5, -1.);
-		glVertex3f(0.5, -0.5, -1.);
-		glVertex3f(0.5, 0.5, -1.);
-		glVertex3f(-0.5, 0.5, -1.);
-	}
-	glEnd();
 
 	glutSwapBuffers();
 }
@@ -57,7 +44,7 @@ void Reshape(int width, int height)
 	// Viewport definieren
 	glViewport(0, 0, width, height);
 	// Frustum definieren
-	glOrtho(-1., 1., -1., 1., 0.3, 1.3);
+	glOrtho(-1., 1., -1., 1., 1., 2.0);
 	// Matrix für Modellierung/Viewing
 	glMatrixMode(GL_MODELVIEW);
 
