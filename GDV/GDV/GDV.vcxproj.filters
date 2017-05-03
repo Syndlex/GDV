@@ -30,9 +30,15 @@
     <ClCompile Include="teil_2.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Cam.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Wuerfel.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Cam.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

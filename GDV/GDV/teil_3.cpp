@@ -4,10 +4,15 @@
 
 #include "Wuerfel.h"
 
+#include <freeglut.h>         //lädt alles für OpenGL
 #include <iostream>
-#include <GL/freeglut.h>         //lädt alles für OpenGL
+#include "Cam.h"
+#include <functional>
 
 float fRotation = 315.0;
+
+Cam cam;
+
 
 void Init()
 {
@@ -17,6 +22,8 @@ void Init()
 	// durchgeführt werden müssen
 }
 
+
+
 void RenderScene() //Zeichenfunktion
 {
 	// Hier befindet sich der Code der in jedem Frame ausgefuehrt werden muss
@@ -24,24 +31,25 @@ void RenderScene() //Zeichenfunktion
 
 	glLoadIdentity(); // Aktuelle Model-/View-Transformations-Matrix zuruecksetzen
 	glClearColor(0.7, 0.25, 0.1, 0.);
-	glClear( GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//glTranslatef(0., 0., -1.);
 
-
+	//cam.Move();
 	gluLookAt(2., 2., 2.5, 0., 0., 0., 0., 1., 0.);
 
-	fRotation = fRotation - 1.0; // Rotationswinkel aendern
-	if (fRotation <= 0.0)
-	{
-		fRotation = fRotation + 360.0;
-	}
+	
+	//fRotation = fRotation - 1.0; // Rotationswinkel aendern
+	//if (fRotation <= 0.0)
+	//{
+	//	fRotation = fRotation + 360.0;
+	//}
 
 	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
 	glutWireCube(0.2);
 	glTranslatef(.1, .1, .0);
 	glRotatef(fRotation, 0., 0., 1.);
-	
+
 	glPushMatrix();
 	{
 		glScalef(1.4, .8, 1.);
@@ -84,7 +92,9 @@ void Animate(int value)
 	// erforderlich sind. Dieser Prozess läuft im Hintergrund und wird alle 
 	// 1000 msec aufgerufen. Der Parameter "value" wird einfach nur um eins 
 	// inkrementiert und dem Callback wieder uebergeben. 
-	std::cout << "value=" << value << std::endl;
+	//std::cout << "value=" << value << std::endl;
+
+
 
 
 	// RenderScene aufrufen
@@ -94,14 +104,47 @@ void Animate(int value)
 	glutTimerFunc(wait_msec, Animate, ++value);
 }
 
+
+void  KeyHandler(unsigned char key, int x, int y)
+{
+	cam.KeyHandler(key);
+}
+
+void KeyUpHandler(unsigned char key, int x, int y)
+{
+	cam.KeyUpHandler(key);
+}
+
+void SpecialKeyHandler(int key, int x, int y)
+{
+	cam.SpecialKeyHandler(key);
+}
+
+void SpecialKeyUpHandler(int key, int x, int y)
+{
+	cam.SpecialKeyUpHandler(key);
+}
+
+
 int main(int argc, char** argv)
 {
+	//cam = Cam();
+
 	glutInit(&argc, argv); // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(600, 600); // Fenster-Konfiguration
-	glutCreateWindow("Lukas \"THE\" Assmann; Marcel \"THE\" Feix"); // Fenster-Erzeugung
+	glutInitWindowSize(800, 800); // Fenster-Konfiguration
+	glutCreateWindow("Lukas Assmann; Marcel Feix"); // Fenster-Erzeugung
+
+
 	glutDisplayFunc(RenderScene); // Zeichenfunktion bekannt machen
 	glutReshapeFunc(Reshape);
+
+	//Register Key Funktion Handler
+	/*glutKeyboardFunc(KeyHandler);
+	glutKeyboardUpFunc(KeyUpHandler);
+	glutSpecialFunc(SpecialKeyHandler);
+	glutSpecialUpFunc(SpecialKeyUpHandler);*/
+	
 	// TimerCallback registrieren; wird nach 10 msec aufgerufen mit Parameter 0  
 	glutTimerFunc(10, Animate, 0);
 	Init();
