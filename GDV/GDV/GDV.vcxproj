@@ -147,7 +147,10 @@
     <ClCompile Include="teil_1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="teil_2.cpp" />
+    <ClCompile Include="teil_2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="teil_3.cpp" />
     <ClCompile Include="Wuerfel.cpp" />
   </ItemGroup>
   <ItemGroup>

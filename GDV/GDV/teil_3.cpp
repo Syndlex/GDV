@@ -7,6 +7,8 @@
 #include <iostream>
 #include <GL/freeglut.h>         //lädt alles für OpenGL
 
+float fRotation = 315.0;
+
 void Init()
 {
 	glEnable(GL_DEPTH_TEST);
@@ -22,15 +24,38 @@ void RenderScene() //Zeichenfunktion
 
 	glLoadIdentity(); // Aktuelle Model-/View-Transformations-Matrix zuruecksetzen
 	glClearColor(0.7, 0.25, 0.1, 0.);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear( GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
 
 	//glTranslatef(0., 0., -1.);
 
 
-	gluLookAt(1., 1., 0., 0., 0., 0., 0., 1., 0.);
+	gluLookAt(2., 2., 2.5, 0., 0., 0., 0., 1., 0.);
 
-	Wuerfel(0.4);
+	fRotation = fRotation - 1.0; // Rotationswinkel aendern
+	if (fRotation <= 0.0)
+	{
+		fRotation = fRotation + 360.0;
+	}
 
+	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+	glutWireCube(0.2);
+	glTranslatef(.1, .1, .0);
+	glRotatef(fRotation, 0., 0., 1.);
+	
+	glPushMatrix();
+	{
+		glScalef(1.4, .8, 1.);
+		glTranslatef(.2, .0, .0);
+		Wuerfel(0.4);
+	}
+	glPopMatrix();
+	//glPushMatrix();
+	{
+		glTranslatef(1.4 * 0.4, 0., 0.);
+		glScalef(1., 0.3, 1.);
+		glTranslatef(.2, 0., 0.);
+		Wuerfel(0.4);
+	}
 
 	glutSwapBuffers();
 }
@@ -45,7 +70,7 @@ void Reshape(int width, int height)
 	glViewport(0, 0, width, height);
 	// Frustum definieren
 	//glOrtho(-1., 1., -1., 1., 1., 2.0);
-	gluPerspective(45.,1.,0.1,2.0);
+	gluPerspective(45., 1., 0.1, 5.0);
 	// Matrix für Modellierung/Viewing
 	glMatrixMode(GL_MODELVIEW);
 
@@ -60,6 +85,8 @@ void Animate(int value)
 	// 1000 msec aufgerufen. Der Parameter "value" wird einfach nur um eins 
 	// inkrementiert und dem Callback wieder uebergeben. 
 	std::cout << "value=" << value << std::endl;
+
+
 	// RenderScene aufrufen
 	glutPostRedisplay();
 	// Timer wieder registrieren - Animate wird so nach 10 msec mit value+=1 aufgerufen.
