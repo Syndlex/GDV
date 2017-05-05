@@ -1,5 +1,9 @@
+﻿
 #include "Cam.h"
 #include <GL/freeglut_std.h>
+#include <iostream>
+
+
 
 
 Cam::Cam()
@@ -19,12 +23,26 @@ KeyStruct& Cam::get_key_struct()
 
 void Cam::Move()
 {
-	//auto Speed = 0.1;
+	auto Speed = 0.11;
+	if (key_struct.KEY_RIGHT || key_struct.KEY_LEFT)
+	{
+		auto speedx = Speed * (this->key_struct.KEY_RIGHT + ((-1) * this->key_struct.KEY_LEFT));
 
-	//Camx += Speed * (this->key_struct.KEY_RIGHT * ((-1) * this->key_struct.KEY_LEFT));
-	//Camy = 0;
-	//gluLookAt(Camx, Camy, 2.5, 0., 0., 0., 0., 1., 0.);
-	//
+		Phi = fmod(Phi + speedx, 2*M_PI);
+	}
+	if (key_struct.KEY_DOWN || key_struct.KEY_UP)
+	{
+		auto speedy = Speed * (this->key_struct.KEY_UP + ((-1) * this->key_struct.KEY_DOWN));
+		
+		Omega = fmod(Omega + speedy, M_PI);
+	}
+
+	x = RADIUS * sin(Phi) * cos(Omega);
+	y = RADIUS * sin(Phi) * sin(Omega);
+	z = RADIUS * cos(Phi);
+
+	//TODO Move Calculus into animate. and move look at into a other funktion.
+	gluLookAt(x, y, z, 0., 0., 0., 0., 1., 0.);
 }
 
 

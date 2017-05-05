@@ -5,9 +5,7 @@
 #include "Wuerfel.h"
 
 #include <freeglut.h>         //lädt alles für OpenGL
-#include <iostream>
 #include "Cam.h"
-#include <functional>
 
 float fRotation = 315.0;
 
@@ -23,7 +21,6 @@ void Init()
 }
 
 
-
 void RenderScene() //Zeichenfunktion
 {
 	// Hier befindet sich der Code der in jedem Frame ausgefuehrt werden muss
@@ -35,10 +32,10 @@ void RenderScene() //Zeichenfunktion
 
 	//glTranslatef(0., 0., -1.);
 
-	//cam.Move();
-	gluLookAt(2., 2., 2.5, 0., 0., 0., 0., 1., 0.);
+	cam.Move();
+	//gluLookAt(2., 2., 2.5, 0., 0., 0., 0., 1., 0.);
 
-	
+
 	//fRotation = fRotation - 1.0; // Rotationswinkel aendern
 	//if (fRotation <= 0.0)
 	//{
@@ -95,8 +92,6 @@ void Animate(int value)
 	//std::cout << "value=" << value << std::endl;
 
 
-
-
 	// RenderScene aufrufen
 	glutPostRedisplay();
 	// Timer wieder registrieren - Animate wird so nach 10 msec mit value+=1 aufgerufen.
@@ -105,7 +100,7 @@ void Animate(int value)
 }
 
 
-void  KeyHandler(unsigned char key, int x, int y)
+void KeyHandler(unsigned char key, int x, int y)
 {
 	cam.KeyHandler(key);
 }
@@ -128,7 +123,7 @@ void SpecialKeyUpHandler(int key, int x, int y)
 
 int main(int argc, char** argv)
 {
-	//cam = Cam();
+	cam = Cam();
 
 	glutInit(&argc, argv); // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -140,11 +135,11 @@ int main(int argc, char** argv)
 	glutReshapeFunc(Reshape);
 
 	//Register Key Funktion Handler
-	/*glutKeyboardFunc(KeyHandler);
+	glutKeyboardFunc(KeyHandler);
 	glutKeyboardUpFunc(KeyUpHandler);
 	glutSpecialFunc(SpecialKeyHandler);
-	glutSpecialUpFunc(SpecialKeyUpHandler);*/
-	
+	glutSpecialUpFunc(SpecialKeyUpHandler);
+
 	// TimerCallback registrieren; wird nach 10 msec aufgerufen mit Parameter 0  
 	glutTimerFunc(10, Animate, 0);
 	Init();
