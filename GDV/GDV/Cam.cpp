@@ -1,9 +1,6 @@
 ﻿
 #include "Cam.h"
-#include <GL/freeglut_std.h>
-#include <iostream>
-
-
+#include <cmath>
 
 
 Cam::Cam()

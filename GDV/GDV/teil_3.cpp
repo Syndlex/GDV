@@ -1,6 +1,7 @@
 // GD-Praktikum:   teil_1.cpp  (Teil 1: Start-Programm)
 // Hergenroether / Groch    Last Update: 05.07.2014
 
+#pragma once
 
 #include "Wuerfel.h"
 
@@ -25,42 +26,42 @@ void RenderScene() //Zeichenfunktion
 {
 	// Hier befindet sich der Code der in jedem Frame ausgefuehrt werden muss
 
-
 	glLoadIdentity(); // Aktuelle Model-/View-Transformations-Matrix zuruecksetzen
 	glClearColor(0.7, 0.25, 0.1, 0.);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//glTranslatef(0., 0., -1.);
 
+	//glPopMatrix();
 	cam.Move();
-	//gluLookAt(2., 2., 2.5, 0., 0., 0., 0., 1., 0.);
-
-
-	//fRotation = fRotation - 1.0; // Rotationswinkel aendern
-	//if (fRotation <= 0.0)
-	//{
-	//	fRotation = fRotation + 360.0;
-	//}
-
-	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-	glutWireCube(0.2);
-	glTranslatef(.1, .1, .0);
-	glRotatef(fRotation, 0., 0., 1.);
+	glPushMatrix();
+	{
+		glScalef(1., 0.25, 4.);
+		Wuerfel(0.2);
+		glTranslatef(0., 0.85, 0.);
+		Wuerfel(0.2);
+	}
+	glPopMatrix();
 
 	glPushMatrix();
 	{
-		glScalef(1.4, .8, 1.);
-		glTranslatef(.2, .0, .0);
-		Wuerfel(0.4);
+		glTranslatef(0., 0.1, 0);
+		glScalef(.2, 1 - 0.85 * 0.05/*0.9570*/, .2);
+		glPushMatrix();
+		{
+			glTranslatef(.4125, 0., 0);
+			Wuerfel(0.2);
+		}
+		glPopMatrix();
 	}
 	glPopMatrix();
-	//glPushMatrix();
+	/*glPushMatrix();
 	{
-		glTranslatef(1.4 * 0.4, 0., 0.);
-		glScalef(1., 0.3, 1.);
-		glTranslatef(.2, 0., 0.);
-		Wuerfel(0.4);
+		glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+		glRotatef(90., 0., 1., 0.);
+		glTranslatef(0, -.025, -0.1);
+		glutSolidCylinder(.1, .2 * 4., 20, 20);
 	}
+	glPopMatrix();*/
 
 	glutSwapBuffers();
 }
@@ -146,3 +147,23 @@ int main(int argc, char** argv)
 	glutMainLoop();
 	return 0;
 }
+
+//glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+//glutWireCube(0.2);
+//glTranslatef(.1, .1, .0);
+//glRotatef(fRotation, 0., 0., 1.);
+
+//glPushMatrix();
+//{
+//	glScalef(1.4, .8, 1.);
+//	glTranslatef(.2, .0, .0);
+//	Wuerfel(0.4);
+//}
+//glPopMatrix();
+////glPushMatrix();
+//{
+//	glTranslatef(1.4 * 0.4, 0., 0.);
+//	glScalef(1., 0.3, 1.);
+//	glTranslatef(.2, 0., 0.);
+//	Wuerfel(0.4);
+//}
