@@ -33,12 +33,18 @@
     <ClCompile Include="Cam.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Wuerfel.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Cam.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
