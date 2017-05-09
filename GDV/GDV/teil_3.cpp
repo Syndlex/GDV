@@ -33,6 +33,7 @@ void RenderScene() //Zeichenfunktion
 
 	//glPopMatrix();
 	cam.Move();
+	//WINGS
 	glPushMatrix();
 	{
 		glScalef(1., 0.25, 4.);
@@ -41,27 +42,80 @@ void RenderScene() //Zeichenfunktion
 		Wuerfel(0.2);
 	}
 	glPopMatrix();
-
+	//CONNECTION ROTS
 	glPushMatrix();
 	{
 		glTranslatef(0., 0.1, 0);
-		glScalef(.2, 1 - 0.85 * 0.05/*0.9570*/, .2);
+		glScalef(.2, 1 - 0.85 * 0.05/* 0.9570*/, .2);
 		glPushMatrix();
 		{
-			glTranslatef(.4125, 0., 0);
+			glPushMatrix();
+			{
+				glTranslatef(.4, 0., 1.9);
+				Wuerfel(0.2);
+				glTranslatef(0., 0., -2 * 1.9);
+				Wuerfel(0.2);
+			}
+			glPopMatrix();
+			glTranslatef(-.4, 0., 1.9);
+			Wuerfel(0.2);
+			glTranslatef(0., 0., -2 * 1.9);
 			Wuerfel(0.2);
 		}
 		glPopMatrix();
 	}
 	glPopMatrix();
-	/*glPushMatrix();
+
+	glPushMatrix();
+	//MAIN TORSO
 	{
 		glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
 		glRotatef(90., 0., 1., 0.);
-		glTranslatef(0, -.025, -0.1);
+		glTranslatef(0, -.01, -0.15);
 		glutSolidCylinder(.1, .2 * 4., 20, 20);
 	}
-	glPopMatrix();*/
+	glPopMatrix();
+	glPushMatrix();
+	//TIP
+	{
+		glRotatef(-90., 0., 1., 0.);
+		glTranslatef(0, -.01, 0.15);
+		glutSolidCone(0.1, 0.07, 20, 20);
+	}
+	glPopMatrix();
+	
+	
+	glPushMatrix();
+	//Rotor
+	{
+		glTranslatef(-.2, -.01, 0);
+		glPushMatrix();
+		{	
+			
+			glScalef(.15, 0.7, .15);
+			glTranslatef(.0, .1, 0);
+			Wuerfel(.2);
+		}
+		glPopMatrix();
+		glPushMatrix();
+		{
+			glRotatef(120, 1, 0, 0);
+			glScalef(.15, 0.7, .15);
+			glTranslatef(.0, .1, 0);
+			Wuerfel(.2);
+		}
+		glPopMatrix();
+		glPushMatrix();
+		{
+			glRotatef(-120, 1, 0, 0);
+			glScalef(.15, 0.7, .15);
+			glTranslatef(.0, .1, 0);
+			Wuerfel(.2);
+		}
+		glPopMatrix();
+	}
+	glPopMatrix();
+
 
 	glutSwapBuffers();
 }
@@ -129,8 +183,9 @@ int main(int argc, char** argv)
 	glutInit(&argc, argv); // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 800); // Fenster-Konfiguration
-	glutCreateWindow("Lukas Assmann; Marcel Feix"); // Fenster-Erzeugung
 
+	glutCreateWindow("Lukas Assmann; Marcel Feix"); // Fenster-Erzeugung
+	glutPositionWindow(3000, 0);
 
 	glutDisplayFunc(RenderScene); // Zeichenfunktion bekannt machen
 	glutReshapeFunc(Reshape);
