@@ -7,10 +7,12 @@
 
 #include <freeglut.h>         //lädt alles für OpenGL
 #include "Cam.h"
+#include "Plane.h"
 
 float fRotation = 315.0;
 
 Cam cam;
+Plane plane;
 
 
 void Init()
@@ -32,9 +34,9 @@ void RenderScene() //Zeichenfunktion
 
 
 	//glPopMatrix();
-	cam.Move();
+	cam.move();
 
-
+	plane.Render();
 
 	glutSwapBuffers();
 }
@@ -64,11 +66,13 @@ void Animate(int value)
 	// 1000 msec aufgerufen. Der Parameter "value" wird einfach nur um eins 
 	// inkrementiert und dem Callback wieder uebergeben. 
 	//std::cout << "value=" << value << std::endl;
-
+	cam.animate();
+	plane.Animate();
+	
 
 	// RenderScene aufrufen
 	glutPostRedisplay();
-	// Timer wieder registrieren - Animate wird so nach 10 msec mit value+=1 aufgerufen.
+	// Timer wieder registrieren - animate wird so nach 10 msec mit value+=1 aufgerufen.
 	int wait_msec = 10;
 	glutTimerFunc(wait_msec, Animate, ++value);
 }
@@ -98,6 +102,7 @@ void SpecialKeyUpHandler(int key, int x, int y)
 int main(int argc, char** argv)
 {
 	cam = Cam();
+	plane = Plane();
 
 	glutInit(&argc, argv); // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

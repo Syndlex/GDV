@@ -49,6 +49,33 @@ void Plane::mainTorso()
 		glutSolidCylinder(.1, .2 * 4., 20, 20);
 	}
 	glPopMatrix();
+	//Backwing
+	glPushMatrix();
+	{
+		glTranslatef(0.1 * 6, 0, 0);
+		glScalef(.5, 0.25, 2.);
+		Wuerfel(0.2);
+	}
+	glPopMatrix();
+	//Fine
+	glPushMatrix();
+	{
+		glTranslatef(0.1 * 6, .16, 0);
+		glBegin(GL_TRIANGLE_STRIP);
+		{
+			GLfloat lenght = .05f;
+			GLfloat height = .08f;
+			GLfloat wide = .03f;
+			glVertex3f(lenght, -height, wide);
+			glVertex3f(-lenght, -height, .0f);
+			glVertex3f(lenght, height, .0f);
+			glVertex3f(lenght, -height, -wide);
+			glVertex3f(lenght, -height, wide);
+			//glVertex3f(-lenght, -height, .0f);
+		}
+		glEnd();
+	}
+	glPopMatrix();
 }
 
 void Plane::rotor()
@@ -63,7 +90,7 @@ void Plane::rotor()
 	glPushMatrix();
 	//Rotor
 	{
-		glRotatef(rotorAngle,1,0,0);
+		glRotatef(rotorAngle, 1, 0, 0);
 		glTranslatef(-.2, -.01, 0);
 		glPushMatrix();
 		{
@@ -94,10 +121,15 @@ void Plane::rotor()
 
 void Plane::Animate()
 {
-	rotorAngle 
+	rotorAngle = rotorAngle - 2.0; // Rotationswinkel aendern
+	if (rotorAngle <= 0.0)
+	{
+		rotorAngle = rotorAngle + 360.0;
+	}
 }
 
-Plane::Plane()
+
+void Plane::Render()
 {
 	//WINGS
 	wings();
@@ -110,6 +142,11 @@ Plane::Plane()
 
 	//TIP
 	rotor();
+}
+
+Plane::Plane()
+{
+	rotorAngle = 0;
 }
 
 Plane::~Plane()

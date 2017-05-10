@@ -20,13 +20,14 @@ class Cam
 public:
 	Cam();
 	~Cam();
-	void Move();
+	void move();
 	void SpecialKeyUpHandler(int key);
 	void KeyUpHandler(unsigned char key);
 	void SpecialKeyHandler(int key);
 	void KeyHandler(unsigned char key);
 
 	KeyStruct& get_key_struct();
+	void animate();
 private:
 	KeyStruct key_struct;
 	float y = 0;

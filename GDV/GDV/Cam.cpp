@@ -18,7 +18,7 @@ KeyStruct& Cam::get_key_struct()
 }
 
 
-void Cam::Move()
+void Cam::animate()
 {
 	auto Speed = 0.11;
 	if (key_struct.KEY_RIGHT || key_struct.KEY_LEFT)
@@ -37,8 +37,10 @@ void Cam::Move()
 	x = RADIUS * sin(Phi) * cos(Omega);
 	y = RADIUS * sin(Phi) * sin(Omega);
 	z = RADIUS * cos(Phi);
+}
 
-	//TODO Move Calculus into animate. and move look at into a other funktion.
+void Cam::move()
+{
 	gluLookAt(x, y, z, 0., 0., 0., 0., 1., 0.);
 }
 

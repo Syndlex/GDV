@@ -9,6 +9,7 @@ public:
 	void mainTorso();
 	void rotor();
 	void Animate();
+	void Render();
 	Plane();
 	~Plane();
 private:

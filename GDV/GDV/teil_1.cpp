@@ -74,7 +74,7 @@ void Animate(int value)
 	std::cout << "value=" << value << std::endl;
 	// RenderScene aufrufen
 	glutPostRedisplay();
-	// Timer wieder registrieren - Animate wird so nach 10 msec mit value+=1 aufgerufen.
+	// Timer wieder registrieren - animate wird so nach 10 msec mit value+=1 aufgerufen.
 	int wait_msec = 10;
 	glutTimerFunc(wait_msec, Animate, ++value);
 }

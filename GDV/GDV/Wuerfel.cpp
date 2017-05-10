@@ -5,6 +5,7 @@
 #include "Wuerfel.h"
 
 
+
 void Wuerfel(GLfloat fSeitenL)
 { 
 	glBegin(GL_POLYGON);   //Vorderseite
