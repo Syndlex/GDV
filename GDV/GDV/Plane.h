@@ -13,6 +13,14 @@ public:
 	Plane();
 	~Plane();
 private:
-	GLfloat rotorAngle;
+	GLfloat rotorAngle = 0;
+	GLfloat tilt = 0;
+	bool tiltUp = true;
+
+	GLfloat planeHight = 0;
+	bool hightUp = true;
+
+	GLfloat planex = 0;
+	bool forward = true;
 };
 

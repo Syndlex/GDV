@@ -8,11 +8,14 @@
 #include <freeglut.h>         //lädt alles für OpenGL
 #include "Cam.h"
 #include "Plane.h"
+#include "PerlinNoise.h"
+#include "Landscape.h"
 
 float fRotation = 315.0;
 
 Cam cam;
 Plane plane;
+Landscape* landscape;
 
 
 void Init()
@@ -36,7 +39,9 @@ void RenderScene() //Zeichenfunktion
 	//glPopMatrix();
 	cam.move();
 
-	plane.Render();
+	landscape->render();
+
+	//plane.Render();
 
 	glutSwapBuffers();
 }
@@ -51,7 +56,8 @@ void Reshape(int width, int height)
 	glViewport(0, 0, width, height);
 	// Frustum definieren
 	//glOrtho(-1., 1., -1., 1., 1., 2.0);
-	gluPerspective(45., 1., 0.1, 5.0);
+	//TODO Fareplane kleiner machen um denn boden zum kreis erzeugen.
+	gluPerspective(45., 1., 0.1, 10.0);
 	// Matrix für Modellierung/Viewing
 	glMatrixMode(GL_MODELVIEW);
 
@@ -67,6 +73,7 @@ void Animate(int value)
 	// inkrementiert und dem Callback wieder uebergeben. 
 	//std::cout << "value=" << value << std::endl;
 	cam.animate();
+	//landscape->animate();
 	plane.Animate();
 	
 
@@ -103,6 +110,7 @@ int main(int argc, char** argv)
 {
 	cam = Cam();
 	plane = Plane();
+	landscape = new Landscape();
 
 	glutInit(&argc, argv); // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

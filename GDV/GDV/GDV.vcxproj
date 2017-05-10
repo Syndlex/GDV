@@ -145,6 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cam.cpp" />
+    <ClCompile Include="landscape.cpp" />
+    <ClCompile Include="PerlinNoise.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="teil_1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -159,6 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cam.h" />
+    <ClInclude Include="landscape.h" />
+    <ClInclude Include="PerlinNoise.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Wuerfel.h" />
   </ItemGroup>

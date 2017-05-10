@@ -121,16 +121,59 @@ void Plane::rotor()
 
 void Plane::Animate()
 {
-	rotorAngle = rotorAngle - 2.0; // Rotationswinkel aendern
+	//Animate Rotor
+	rotorAngle = rotorAngle - 3.0; // Rotationswinkel aendern
 	if (rotorAngle <= 0.0)
 	{
 		rotorAngle = rotorAngle + 360.0;
+	}
+
+	//Animate Tilt Body
+	if (tilt < -.8)tiltUp = true;
+	if (tilt > .8)tiltUp = false;
+	//TODO MaybePut a Break here
+	if (tiltUp && !hightUp && tilt <= 4)
+	{
+		tilt = tilt + 0.01;
+	}
+	else if (hightUp && tilt >= -4)
+	{
+		tilt = tilt - 0.01;
+	}
+
+	//Animate Hight
+	if (planeHight < -0.1)hightUp = true;
+	if (planeHight > 0.1)hightUp = false;
+	//TODO MaybePut a Break here
+	if (hightUp && tiltUp)
+	{
+		planeHight = planeHight + 0.0005;
+	}
+	else if (!tiltUp)
+	{
+		planeHight = planeHight - 0.0005;
+	}
+
+	//Animate forward movement
+	if (planex < -0.1)forward = true;
+	if (planex > 0.1)forward = false;
+	//TODO MaybePut a Break here
+	if (forward)
+	{
+		planex = planex + 0.00009;
+	}
+	else
+	{
+		planex = planex - 0.00009;
 	}
 }
 
 
 void Plane::Render()
 {
+	//glScalef( .5, .5, .5);
+	glRotatef(tilt, 0, 0, 1);
+	glTranslatef(planex, planeHight, 0);
 	//WINGS
 	wings();
 
