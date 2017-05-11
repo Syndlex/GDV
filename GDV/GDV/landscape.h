@@ -14,8 +14,10 @@ private:
 	//GLfloat x = 2;
 	//GLfloat y = 2;
 
-	GLfloat scl = 0.1;
-	static const int MAXY = 100;
-	 static const int MAXX = 100;
-	double height[MAXX][MAXY];
+	GLfloat scl = 0.25;
+	int perli = 0;
+	int animator = 20;
+	static const int MAXY = 60;
+	 static const int MAXX = 60;
+	GLfloat height[MAXX][MAXY];
 };

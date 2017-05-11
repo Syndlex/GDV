@@ -17,7 +17,7 @@ void Landscape::render()
 
 		glTranslatef(0, -1.7, 0);
 
-		glScalef(scl, 0, scl);
+		glScalef(scl, 1, scl);
 		for (int y = 0; y < MAXY; ++y)
 		{
 			glBegin(GL_LINE_STRIP);//Change to GL_TRIANGLE_STRIP
@@ -26,8 +26,7 @@ void Landscape::render()
 				{
 					glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 					glVertex3f(x - MAXX / 2, height[x][y], y - MAXY / 2);
-					glVertex3f(x - MAXX / 2, height[x][y+1], y + 1 - MAXY / 2); 
-
+					glVertex3f(x - MAXX / 2, height[x][y + 1], y + 1 - MAXY / 2);
 				}
 			}
 			glEnd();
@@ -40,24 +39,27 @@ void Landscape::render()
 void Landscape::animate()
 {
 	auto perlin_noise = PerlinNoise();
-	for (int y = 0; y < MAXY; ++y)
+	if (animator > 7)
 	{
-		glBegin(GL_LINE_STRIP);//Change to GL_TRIANGLE_STRIP
+		for (int x = 0; x < MAXX; ++x)
 		{
-			for (int x = 0; x < MAXX; ++x)
+			for (int y = 0; y < MAXY; ++y)
 			{
-				height[x][y] = perlin_noise.noise(-x, y, 0.25)*10;
-				std::cout << height[x][y] << std::endl;
-
+				height[x][y] = perlin_noise.noise(-x+perli, y-perli, 0.2);
+				//std::cout << height[x][y] << std::endl;
 			}
 		}
-		glEnd();
+		animator = 0;
+		perli += 1;
+	}
+	else
+	{
+		animator++;
 	}
 }
 
 Landscape::Landscape()
 {
-	animate();
 }
 
 

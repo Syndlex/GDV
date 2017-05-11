@@ -5,10 +5,9 @@
 
 #include "Wuerfel.h"
 
-#include <freeglut.h>         //lädt alles für OpenGL
+#include <GL/freeglut.h>         //lädt alles für OpenGL
 #include "Cam.h"
 #include "Plane.h"
-#include "PerlinNoise.h"
 #include "Landscape.h"
 
 float fRotation = 315.0;
@@ -41,7 +40,7 @@ void RenderScene() //Zeichenfunktion
 
 	landscape->render();
 
-	//plane.Render();
+	plane.Render();
 
 	glutSwapBuffers();
 }
@@ -73,7 +72,7 @@ void Animate(int value)
 	// inkrementiert und dem Callback wieder uebergeben. 
 	//std::cout << "value=" << value << std::endl;
 	cam.animate();
-	//landscape->animate();
+	landscape->animate();
 	plane.Animate();
 	
 
@@ -117,7 +116,7 @@ int main(int argc, char** argv)
 	glutInitWindowSize(800, 800); // Fenster-Konfiguration
 
 	glutCreateWindow("Lukas Assmann; Marcel Feix"); // Fenster-Erzeugung
-	glutPositionWindow(3000, 0);
+	//glutPositionWindow(3000, 0);
 
 	glutDisplayFunc(RenderScene); // Zeichenfunktion bekannt machen
 	glutReshapeFunc(Reshape);

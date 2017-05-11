@@ -94,7 +94,7 @@ void Plane::rotor()
 		glTranslatef(-.2, -.01, 0);
 		glPushMatrix();
 		{
-			glScalef(.15, 0.7, .15);
+			glScalef(.15, 0.7, .2);
 			glTranslatef(.0, .1, 0);
 			Wuerfel(.2);
 		}
@@ -102,7 +102,7 @@ void Plane::rotor()
 		glPushMatrix();
 		{
 			glRotatef(120, 1, 0, 0);
-			glScalef(.15, 0.7, .15);
+			glScalef(.15, 0.7, .2);
 			glTranslatef(.0, .1, 0);
 			Wuerfel(.2);
 		}
@@ -110,7 +110,7 @@ void Plane::rotor()
 		glPushMatrix();
 		{
 			glRotatef(-120, 1, 0, 0);
-			glScalef(.15, 0.7, .15);
+			glScalef(.15, 0.7, .2);
 			glTranslatef(.0, .1, 0);
 			Wuerfel(.2);
 		}
@@ -122,7 +122,7 @@ void Plane::rotor()
 void Plane::Animate()
 {
 	//Animate Rotor
-	rotorAngle = rotorAngle - 3.0; // Rotationswinkel aendern
+	rotorAngle = rotorAngle + 5.0; // Rotationswinkel aendern
 	if (rotorAngle <= 0.0)
 	{
 		rotorAngle = rotorAngle + 360.0;
@@ -171,9 +171,13 @@ void Plane::Animate()
 
 void Plane::Render()
 {
+	glPushMatrix();
+
 	//glScalef( .5, .5, .5);
 	glRotatef(tilt, 0, 0, 1);
+	glRotatef(-45, 0, 1, 0);
 	glTranslatef(planex, planeHight, 0);
+	glTranslatef(0, .25, 0);
 	//WINGS
 	wings();
 
@@ -185,6 +189,7 @@ void Plane::Render()
 
 	//TIP
 	rotor();
+	glPopMatrix();
 }
 
 Plane::Plane()

@@ -24,14 +24,24 @@ void Cam::animate()
 	{
 		auto speedx = Speed * (this->key_struct.KEY_RIGHT + ((-1) * this->key_struct.KEY_LEFT));
 
-		Phi = fmod(Phi + speedx, 2 * M_PI);
+		Phi = Phi + speedx;
+
 	}
 	if (key_struct.KEY_DOWN || key_struct.KEY_UP)
 	{
 		auto speedy = Speed * (this->key_struct.KEY_UP + ((-1) * this->key_struct.KEY_DOWN));
-
-		Omega = fmod(Omega + speedy, M_PI);
+		
+		Omega = Omega + speedy;
+		if(Omega >= 25)
+		{
+			Omega = 25;
+		}
+		if (Omega <= -25)
+		{
+			Omega = -25;
+		}
 	}
+
 
 	x = RADIUS * sin(Phi) * cos(Omega);
 	y = RADIUS * sin(Phi) * sin(Omega);
