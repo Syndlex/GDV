@@ -43,7 +43,6 @@ void Plane::mainTorso()
 {
 	glPushMatrix();
 	{
-		glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
 		glRotatef(90., 0., 1., 0.);
 		glTranslatef(0, -.01, -0.15);
 		glutSolidCylinder(.1, .2 * 4., 20, 20);
@@ -172,10 +171,11 @@ void Plane::Animate()
 void Plane::Render()
 {
 	glPushMatrix();
+	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
 
-	//glScalef( .5, .5, .5);
+	glScalef( .7, .7, .7);
 	glRotatef(tilt, 0, 0, 1);
-	glRotatef(-45, 0, 1, 0);
+	glRotatef(180-45, 0, 1, 0);
 	glTranslatef(planex, planeHight, 0);
 	glTranslatef(0, .25, 0);
 	//WINGS
@@ -194,7 +194,7 @@ void Plane::Render()
 
 Plane::Plane()
 {
-	rotorAngle = 0;
+
 }
 
 Plane::~Plane()

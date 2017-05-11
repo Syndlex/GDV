@@ -5,6 +5,7 @@
 class Landscape
 {
 public:
+	void setLandscapeColor(int y, int x);
 	void render();
 	void animate();
 	Landscape();
@@ -14,7 +15,7 @@ private:
 	//GLfloat x = 2;
 	//GLfloat y = 2;
 
-	GLfloat scl = 0.25;
+	GLfloat scl = 0.35;
 	int perli = 0;
 	int animator = 20;
 	static const int MAXY = 60;

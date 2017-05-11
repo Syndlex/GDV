@@ -13,7 +13,9 @@
 float fRotation = 315.0;
 
 Cam cam;
-Plane plane;
+Plane plane1;
+Plane plane2;
+Plane plane3;
 Landscape* landscape;
 
 
@@ -31,7 +33,7 @@ void RenderScene() //Zeichenfunktion
 	// Hier befindet sich der Code der in jedem Frame ausgefuehrt werden muss
 
 	glLoadIdentity(); // Aktuelle Model-/View-Transformations-Matrix zuruecksetzen
-	glClearColor(0.7, 0.25, 0.1, 0.);
+	glClearColor(0.35, 0.35, .7, 0.);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
@@ -40,7 +42,12 @@ void RenderScene() //Zeichenfunktion
 
 	landscape->render();
 
-	plane.Render();
+	plane1.Render();
+	glTranslatef(1, 1, -2);
+	
+	plane2.Render();
+	glTranslatef(2, 1, 2);
+	plane3.Render();
 
 	glutSwapBuffers();
 }
@@ -56,7 +63,7 @@ void Reshape(int width, int height)
 	// Frustum definieren
 	//glOrtho(-1., 1., -1., 1., 1., 2.0);
 	//TODO Fareplane kleiner machen um denn boden zum kreis erzeugen.
-	gluPerspective(45., 1., 0.1, 10.0);
+	gluPerspective(45., 1., 0.1, 13.0);
 	// Matrix für Modellierung/Viewing
 	glMatrixMode(GL_MODELVIEW);
 
@@ -73,7 +80,9 @@ void Animate(int value)
 	//std::cout << "value=" << value << std::endl;
 	cam.animate();
 	landscape->animate();
-	plane.Animate();
+	plane1.Animate();
+	plane2.Animate();
+	plane3.Animate();
 	
 
 	// RenderScene aufrufen
@@ -108,7 +117,9 @@ void SpecialKeyUpHandler(int key, int x, int y)
 int main(int argc, char** argv)
 {
 	cam = Cam();
-	plane = Plane();
+	plane1 = Plane();
+	plane2 = Plane();
+	plane3 = Plane();
 	landscape = new Landscape();
 
 	glutInit(&argc, argv); // GLUT initialisieren

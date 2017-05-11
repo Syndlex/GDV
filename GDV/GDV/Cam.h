@@ -5,7 +5,7 @@
 #include <GL/freeglut.h>
 
 
-const static GLdouble RADIUS = 2;
+const static GLdouble RADIUS = 3;
 
 struct KeyStruct
 {
