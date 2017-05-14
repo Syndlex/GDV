@@ -45,8 +45,7 @@ void RenderScene() //Zeichenfunktion
 {
 	// Hier befindet sich der Code der in jedem Frame ausgefuehrt werden muss
 	glLoadIdentity(); // Aktuelle Model-/View-Transformations-Matrix zuruecksetzen
-	glClearColor(0.35, 0.35, .7, 0.);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
 	//glPopMatrix();
 	cam.move();

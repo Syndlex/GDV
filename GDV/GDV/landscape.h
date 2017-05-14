@@ -2,7 +2,7 @@
 #include <GL/freeglut.h>
 #include "PerlinNoise.h"
 
-
+# define M_PI          3.141592653589793238462643383279502884L /* pi */
 class Landscape
 {
 public:
@@ -29,7 +29,8 @@ private:
 
 	GLfloat light_position[4] = {.0,.0,.0,1.};
 	GLfloat sun_position[3];
-	float Omega = 90;
-	float Phi = 30;
+	GLfloat light_diffuse[4];
+	float Omega = 0;
+	float Phi = 0;
 
 };
