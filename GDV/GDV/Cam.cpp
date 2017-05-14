@@ -25,13 +25,13 @@ void Cam::animate()
 		auto speedx = Speed * (this->key_struct.KEY_DOWN + ((-1) * this->key_struct.KEY_UP));
 
 		Phi = Phi + speedx;
-		//if(Phi > 30)
-		//{
-		//	Phi = 30;
-		//}
-		//if(Phi > 29){
-			//Phi = -30;
-		//}
+		if(Phi > 30.5)
+		{
+			Phi = 30.5;
+		}
+		if(Phi < 29.5){
+			Phi = 29.5;
+		}
 
 
 	}
