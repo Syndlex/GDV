@@ -3,6 +3,7 @@
 
 void Plane::wings()
 {
+	glColor3f(.56f, .38f, .08f);
 	glPushMatrix();
 	{
 		glScalef(1., 0.25, 4.);
@@ -15,6 +16,7 @@ void Plane::wings()
 
 void Plane::connectionRots()
 {
+	glColor3f(.9f, .3f, .07f);
 	glPushMatrix();
 	{
 		glTranslatef(0., 0.1, 0);
@@ -41,6 +43,7 @@ void Plane::connectionRots()
 
 void Plane::mainTorso()
 {
+	glColor3f(.78f,.64f,.12f);
 	glPushMatrix();
 	{
 		glRotatef(90., 0., 1., 0.);
@@ -49,6 +52,7 @@ void Plane::mainTorso()
 	}
 	glPopMatrix();
 	//Backwing
+	glColor3f(.9f, .3f, .07f);
 	glPushMatrix();
 	{
 		glTranslatef(0.1 * 6, 0, 0);
@@ -56,29 +60,37 @@ void Plane::mainTorso()
 		Wuerfel(0.2);
 	}
 	glPopMatrix();
-	//Fine
+	//Fin
 	glPushMatrix();
 	{
 		glTranslatef(0.1 * 6, .16, 0);
 		glBegin(GL_TRIANGLE_STRIP);
 		{
-			GLfloat lenght = .05f;
+			GLfloat length = .05f;
 			GLfloat height = .08f;
-			GLfloat wide = .03f;
-			glVertex3f(lenght, -height, wide);
-			glVertex3f(-lenght, -height, .0f);
-			glVertex3f(lenght, height, .0f);
-			glVertex3f(lenght, -height, -wide);
-			glVertex3f(lenght, -height, wide);
-			//glVertex3f(-lenght, -height, .0f);
+			GLfloat width = .03f;
+			//(In plane view direction)
+			// Rightside
+			glVertex3f(length, -height, width);
+			glVertex3f(-length, -height, .0f);
+			glNormal3f(2.0*height*width, -2.0 * length * width, 0.);
+			glVertex3f(length, height, .0f);
+			
+			//leftside
+			glNormal3f(-2.0*height*width, -2.0 * length * width, 0.);
+			glVertex3f(length, -height, -width);
+			//back
+			glNormal3f(1., 0., 0.);
+			glVertex3f(length, -height, width);
 		}
 		glEnd();
 	}
-	glPopMatrix();
+	glPopMatrix();	
 }
 
 void Plane::rotor()
 {
+	glColor3f(.9f, .3f, .07f);
 	glPushMatrix();
 	{
 		glRotatef(-90., 0., 1., 0.);
@@ -88,6 +100,7 @@ void Plane::rotor()
 	glPopMatrix();
 	glPushMatrix();
 	//Rotor
+	glColor3f(.3f, .3f, .3f);
 	{
 		glRotatef(rotorAngle, 1, 0, 0);
 		glTranslatef(-.2, -.01, 0);
@@ -170,14 +183,16 @@ void Plane::Animate()
 
 void Plane::Render()
 {
+
 	glPushMatrix();
 	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
 
-	glScalef( .7, .7, .7);
+	glScalef( .7, .7,.7);
 	glRotatef(tilt, 0, 0, 1);
 	glRotatef(180-45, 0, 1, 0);
 	glTranslatef(planex, planeHight, 0);
 	glTranslatef(0, .25, 0);
+
 	//WINGS
 	wings();
 

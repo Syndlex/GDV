@@ -19,10 +19,11 @@ KeyStruct& Cam::get_key_struct()
 
 void Cam::animate()
 {
-	auto Speed = 0.075;
+	auto SpeedLR = 0.065;
+	auto SpeedUD = 0.045;
 	if (key_struct.KEY_UP || key_struct.KEY_DOWN)
 	{
-		auto speedx = Speed * (this->key_struct.KEY_DOWN + ((-1) * this->key_struct.KEY_UP));
+		auto speedx = SpeedUD * (this->key_struct.KEY_UP + ((-1) * this->key_struct.KEY_DOWN));
 
 		Phi = Phi + speedx;
 		if(Phi > 30.5)
@@ -37,7 +38,7 @@ void Cam::animate()
 	}
 	if (key_struct.KEY_LEFT || key_struct.KEY_RIGHT)
 	{
-		auto speedy = Speed * (this->key_struct.KEY_RIGHT + ((-1) * this->key_struct.KEY_LEFT));
+		auto speedy = SpeedLR * (this->key_struct.KEY_RIGHT + ((-1) * this->key_struct.KEY_LEFT));
 		
 		Omega = Omega + speedy;
 	}

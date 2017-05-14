@@ -19,31 +19,39 @@ Plane plane3;
 Plane plane4;
 Plane plane5;
 Plane plane6;
-Landscape* landscape;
+Landscape landscape;
 
 
 void Init()
 {
-	glEnable(GL_DEPTH_TEST);
-	glClearDepth(1.0);
+
 	// Hier finden jene Aktionen statt, die zum Programmstart einmalig 
 	// durchgeführt werden müssen
+	
+
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glShadeModel(GL_SMOOTH);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_NORMALIZE);
+	glClearDepth(1.0);
 }
 
 
 void RenderScene() //Zeichenfunktion
 {
 	// Hier befindet sich der Code der in jedem Frame ausgefuehrt werden muss
-
 	glLoadIdentity(); // Aktuelle Model-/View-Transformations-Matrix zuruecksetzen
 	glClearColor(0.35, 0.35, .7, 0.);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
 	//glPopMatrix();
 	cam.move();
 
-	landscape->render();
+	landscape.render();
 
 	glPushMatrix();
 	plane1.Render();
@@ -89,7 +97,7 @@ void Animate(int value)
 	// inkrementiert und dem Callback wieder uebergeben. 
 	//std::cout << "value=" << value << std::endl;
 	cam.animate();
-	landscape->animate();
+	landscape.animate();
 	plane1.Animate();
 	plane2.Animate();
 	plane3.Animate();
@@ -129,6 +137,7 @@ void SpecialKeyUpHandler(int key, int x, int y)
 
 int main(int argc, char** argv)
 {
+	landscape = Landscape();
 	cam = Cam();
 	plane1 = Plane();
 	plane2 = Plane();
@@ -136,7 +145,7 @@ int main(int argc, char** argv)
 	plane4 = Plane();
 	plane5 = Plane();
 	plane6 = Plane();
-	landscape = new Landscape();
+	
 
 	glutInit(&argc, argv); // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
