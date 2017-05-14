@@ -16,6 +16,9 @@ Cam cam;
 Plane plane1;
 Plane plane2;
 Plane plane3;
+Plane plane4;
+Plane plane5;
+Plane plane6;
 Landscape* landscape;
 
 
@@ -42,12 +45,19 @@ void RenderScene() //Zeichenfunktion
 
 	landscape->render();
 
+	glPushMatrix();
 	plane1.Render();
 	glTranslatef(1, 1, -2);
-	
 	plane2.Render();
 	glTranslatef(2, 1, 2);
 	plane3.Render();
+	glTranslatef(2, 1, 2);
+	plane4.Render();
+	glPopMatrix();
+	glTranslatef(-1, 1, 2);
+	plane5.Render();
+	glTranslatef(-2, 1, -2);
+	plane6.Render();
 
 	glutSwapBuffers();
 }
@@ -83,7 +93,10 @@ void Animate(int value)
 	plane1.Animate();
 	plane2.Animate();
 	plane3.Animate();
-	
+	plane4.Animate();
+	plane5.Animate();
+	plane6.Animate();
+
 
 	// RenderScene aufrufen
 	glutPostRedisplay();
@@ -120,6 +133,9 @@ int main(int argc, char** argv)
 	plane1 = Plane();
 	plane2 = Plane();
 	plane3 = Plane();
+	plane4 = Plane();
+	plane5 = Plane();
+	plane6 = Plane();
 	landscape = new Landscape();
 
 	glutInit(&argc, argv); // GLUT initialisieren

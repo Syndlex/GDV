@@ -33,6 +33,6 @@ private:
 	float y = 0;
 	float x = 0;
 	float z = 0;
-	float Omega = 0;
-	float Phi = 0;
+	float Omega = 90;
+	float Phi = 30;
 };
