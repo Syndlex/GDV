@@ -11,11 +11,9 @@ void Landscape::setLandscapeColor(int y, int x)
 
 	if (height[x][y] > .5f)
 	{
-		
 		Red = .7f;
 		Green = .7f;
 		Blue = .7f;
-
 	}
 	else
 	{
@@ -34,31 +32,39 @@ void Landscape::render()
 {
 	//calc for Light
 	// Sunset (Around Pi/2 with an offset of 0.5)
-	if (Phi >= (M_PI/2-.5) && Phi < (M_PI / 2 + .5)) {
+	if (Phi >= (M_PI / 2 - .5) && Phi < (M_PI / 2 + .5))
+	{
 		float gradient = 1 - (Phi - (M_PI / 2 - .5));
-		glClearColor(0.35*gradient, 0.35*gradient, .7*gradient, 0.);
-		light_diffuse[0] = 1.;
-		light_diffuse[1] = 1.*gradient;
-		light_diffuse[2] = 1.*gradient;
-		light_diffuse[3] = 1.*gradient;
-	} else 
+		glClearColor(0.35 * gradient, 0.35 * gradient, .7 * gradient, 0.);
+		light_diffuse[0] = 1. * gradient * 3;
+		if (light_diffuse[0] > 1.)light_diffuse[0] = 1.;
+		light_diffuse[1] = 1. * gradient;
+		light_diffuse[2] = 1. * gradient;
+		light_diffuse[3] = 1. * gradient;
+	}
+	else
 	// Dawn	(Around Pi * 3/2 with an offset of 0.5)
-	if (Phi >= (M_PI * 1.5 - .5) && Phi < (M_PI * 1.5 + .5)) {
+	if (Phi >= (M_PI * 1.5 - .5) && Phi < (M_PI * 1.5 + .5))
+	{
 		float gradient = Phi - (M_PI * 1.5 - .5);
-		glClearColor(0.35*gradient, 0.35*gradient, .7*gradient, 0.);
-		light_diffuse[0] = 1.;
-		light_diffuse[1] = 1.*gradient;
-		light_diffuse[2] = 1.*gradient;
-		light_diffuse[3] = 1.*gradient;
+		glClearColor(0.35 * gradient, 0.35 * gradient, .7 * gradient, 0.);
+		light_diffuse[0] = 1. * (gradient *3);
+		if (light_diffuse[0] > 1.)light_diffuse[0] = 1.;
+		light_diffuse[1] = 1. * gradient;
+		light_diffuse[2] = 1. * gradient;
+		light_diffuse[3] = 1. * gradient;
 		glEnable(GL_LIGHT0);
-	} else
+	}
+	else
 	// Night
-	if (Phi >= (M_PI/2+.5) && Phi <= M_PI*1.5-.5) {
+	if (Phi >= (M_PI / 2 + .5) && Phi <= M_PI * 1.5 - .5)
+	{
 		glClearColor(0., 0., 0., 0.);
 		glDisable(GL_LIGHT0);
-	} 
+	}
 	// Day
-	else {
+	else
+	{
 		glClearColor(0.35, 0.35, .7, 0.);
 		light_diffuse[0] = 1.;
 		light_diffuse[1] = 1.;
@@ -66,7 +72,7 @@ void Landscape::render()
 	}
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	
+
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 
@@ -74,10 +80,10 @@ void Landscape::render()
 	glPushMatrix();
 	{
 		//glTranslatef(10.f, 3.f, 0.f);
-		glTranslatef(sun_position[0], sun_position[1], sun_position[2] );
+		glTranslatef(sun_position[0], sun_position[1], sun_position[2]);
 		glRotatef(45., 1., 0., 0.);
 		glColor3f(.7, .7, 0.);
-		glutSolidSphere(.7, 10., 20.);
+		glutSolidSphere(1., 10., 20.);
 	}
 	glPopMatrix();
 
@@ -86,7 +92,7 @@ void Landscape::render()
 	{
 		glTranslatef(0, -1.7, 0);
 		glScalef(scl, 1, scl);
-		
+
 		for (int y = 0; y < MAXY; ++y)
 		{
 			glBegin(GL_TRIANGLE_STRIP);
@@ -96,7 +102,7 @@ void Landscape::render()
 					setLandscapeColor(y, x);
 					glNormal3f(0., 1., 0.);
 					glVertex3f(x - MAXX / 2, height[x][y], y - MAXY / 2);
-					setLandscapeColor(y+1, x);
+					setLandscapeColor(y + 1, x);
 					// Esso es nessesito?
 					glNormal3f(0., 1., 0.);
 					glVertex3f(x - MAXX / 2, height[x][y + 1], y + 1 - MAXY / 2);
@@ -143,8 +149,6 @@ void Landscape::animate()
 
 Landscape::Landscape()
 {
-
-
 }
 
 

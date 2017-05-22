@@ -168,23 +168,3 @@ int main(int argc, char** argv)
 	glutMainLoop();
 	return 0;
 }
-
-//glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-//glutWireCube(0.2);
-//glTranslatef(.1, .1, .0);
-//glRotatef(fRotation, 0., 0., 1.);
-
-//glPushMatrix();
-//{
-//	glScalef(1.4, .8, 1.);
-//	glTranslatef(.2, .0, .0);
-//	Wuerfel(0.4);
-//}
-//glPopMatrix();
-////glPushMatrix();
-//{
-//	glTranslatef(1.4 * 0.4, 0., 0.);
-//	glScalef(1., 0.3, 1.);
-//	glTranslatef(.2, 0., 0.);
-//	Wuerfel(0.4);
-//}

@@ -13,7 +13,7 @@ public:
 	~Landscape();
 
 private:
-	GLdouble LIGHTRADIUS = 8;
+	GLdouble LIGHTRADIUS = 7;
 	GLdouble SUNRADIUS = 10;
 	int count = -2;
 	//GLfloat x = 2;a

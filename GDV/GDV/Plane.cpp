@@ -55,7 +55,7 @@ void Plane::mainTorso()
 	glColor3f(.9f, .3f, .07f);
 	glPushMatrix();
 	{
-		glTranslatef(0.1 * 6, 0, 0);
+		glTranslatef(0.5999, 0., 0.);
 		glScalef(.5, 0.25, 2.);
 		Wuerfel(0.2);
 	}

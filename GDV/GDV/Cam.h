@@ -34,5 +34,5 @@ private:
 	float x = 0;
 	float z = 0;
 	float Omega = 0;
-	float Phi = 0;
+	float Phi = 30;
 };
