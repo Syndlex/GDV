@@ -3,12 +3,11 @@
 
 #pragma once
 
-#include "Wuerfel.h"
-
 #include <GL/freeglut.h>         //lädt alles für OpenGL
 #include "Cam.h"
 #include "Plane.h"
 #include "Landscape.h"
+#include <iostream>
 
 float fRotation = 315.0;
 
@@ -144,6 +143,19 @@ int main(int argc, char** argv)
 	plane4 = Plane();
 	plane5 = Plane();
 	plane6 = Plane();
+
+	std::cout << "-|----------------------------------------------------------------|-" << std::endl;
+	std::cout << "-|----------------------------WElCOME-----------------------------|-" << std::endl;
+	std::cout << "-|----------------------------------------------------------------|-" << std::endl;
+	std::cout << "-|----------------To the gorgeous Sunset Simulator----------------|-" << std::endl;
+	std::cout << "-|-------------------------Provided by----------------------------|-" << std::endl;
+	std::cout << "-|----------------------------------------------------------------|-" << std::endl;
+	std::cout << "-|--------------Lukas Assmann----and----Marcel Feix---------------|-" << std::endl;
+	std::cout << "-|----------------------------------------------------------------|-" << std::endl;
+	std::cout << "-|-------Use W,A,S,D and the Arrow-Key's to move the Camera-------|-" << std::endl;
+	std::cout << "-|------------Now press the any key to continue. Have Fun---------|-" << std::endl;
+	std::cout << "-|----------------------------------------------------------------|-" << std::endl;
+	std::cin.ignore();
 	
 
 	glutInit(&argc, argv); // GLUT initialisieren

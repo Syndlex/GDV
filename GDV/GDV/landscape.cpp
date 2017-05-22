@@ -1,6 +1,5 @@
 #include "Landscape.h"
 #include <ostream>
-#include <iostream>
 
 
 void Landscape::setLandscapeColor(int y, int x)
@@ -17,9 +16,6 @@ void Landscape::setLandscapeColor(int y, int x)
 	}
 	else
 	{
-		Red = .62f;
-		Green = .3f;
-		Blue = .08f;
 		Red = .55f;
 		Green = .8f;
 		Blue = .33f;
@@ -48,7 +44,7 @@ void Landscape::render()
 	{
 		float gradient = Phi - (M_PI * 1.5 - .5);
 		glClearColor(0.35 * gradient, 0.35 * gradient, .7 * gradient, 0.);
-		light_diffuse[0] = 1. * (gradient *3);
+		light_diffuse[0] = 1. * (gradient * 3);
 		if (light_diffuse[0] > 1.)light_diffuse[0] = 1.;
 		light_diffuse[1] = 1. * gradient;
 		light_diffuse[2] = 1. * gradient;
