@@ -1,5 +1,5 @@
 # GDV
 
-This is an Uni Project.
+This is an university Project.
 
-We Learned how OpenGL works.
+We learned OpenGL and Image manipulation.
